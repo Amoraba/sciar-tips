@@ -17,19 +17,32 @@
 
 ## Part 4a: Theory behind the build
 
-**Leadership — Transactional leadership (Burns, 1978):** Declan's emphasis on established rules and control over the points formula reflects a transactional approach, where defined expectations and rewards guide behaviour. His request to hide the formula suggests that consistency and managerial control are prioritised over employee participation. This explains the preference for predictable administration but misses employees' perceptions of fairness.
+**Leadership: transactional leadership (Burns, 1978).** Declan runs the tip split as a top-down exchange of fixed rules for rewards. He says "They don't need the formula, they need the money" and "the kitchen porters are on the kitchen rate and they know that" (02-declan.md). The theory explains why the rule is owner-set and hidden. It misses how staff judge fairness. Rafael took on Mehmet's late shifts, yet his pay is "same like before, almost same" (01-rafael.md). From week 9, about 20 of his weekly hours fell after 23:00 and earned nothing (payouts.csv, staff_id = S12).
 
-**Culture — Organisational silence and psychological safety (Morrison and Milliken, 2000; Edmondson, 1999):** Rafael's request not to be identified, alongside Niamh's rejection of a complaints feature, suggests conditions in which employees may withhold concerns. This influenced the inclusion of a concern-submission feature in the staff dashboard.
+**Culture: organisational silence (Morrison and Milliken, 2000) and psychological safety (Edmondson, 1999).** Niamh writes "Nobody has ever complained about the split" (03-niamh.md). Yet Rafael did ask her in September and was told "is the system, is fair for everybody", and he now pleads "please dont say it was me who ask" (01-rafael.md). Silence is being read as agreement.
 
-These choices affect Sciar's competitive advantage: owner control may support customer retention, while employee transparency and voice could differentiate Sciar through trust. However, individual messages cannot establish the culture of an entire organisation, and the theories do not prove why employees remain silent.
+**Design choice:** because the manager is the only channel ("If someone has a problem they come to me", 03-niamh.md), the concern feature is private to the person who raises it and is not routed through Niamh or Declan.
+
+**Competitive advantage:** owner control wins the paying customer. But a tips product that staff distrust will be blamed in the first pay dispute, so staff trust is what protects Sciar's reputation with every later restaurant (inferred).
+
+**Limit:** both theories come from larger organisations, and five messages cannot show a whole culture. Transactional leadership also misses personal dependence: Declan is "good to me with my visa letter" (01-rafael.md).
 
 ## Part 4b: Decision record
 
-**Decision 1 — Aoife's request to remove the concern feature:** I considered removing it, directing employees to Niamh, or retaining a private submission mechanism. I retained the feature because Rafael fears being identified when raising concerns. I prioritised employee voice and psychological safety while avoiding a public complaints wall. Submissions remain visible only to the submitting user on their device; they are not transmitted to management. Evidence of a trusted, secure alternative could change this decision.
+**Decision 1 (request changed): Aoife (04-aoife.md) and Niamh (03-niamh.md) asked me to drop "raise a concern".**
+- *Options:* remove it, send concerns to Niamh, or keep a private feature.
+- *Criteria:* the least powerful user must be able to speak; Rafael's fear of being identified; owner and investor confidence.
+- *What decided it:* Rafael already asked Niamh and was dismissed, so routing concerns through her would repeat the silence. I kept the feature but made it private.
+- *Underlying need:* Aoife fears "owners will run a mile". The build still serves her: there is no public "moaning wall", nothing is sent to the owner, and the alpha stores concerns only on the user's phone.
+- *What would change my mind:* owners in a further pilot leaving because of the feature, or Halloran's adopting an independent channel staff trust.
 
-**Decision 2 — AI-generated retention claim:** Aoife recommended using the claim that transparent tip distribution improves staff retention by 34%. I considered using it, removing it, or replacing it with a verifiable claim. I rejected it because the AI market scan supplied no supporting source. Accuracy and credibility outweighed marketing appeal. An independently verified study with a relevant methodology could change my decision.
+**Decision 2 (AI suggestion rejected): the AI market scan's advice to "Lead marketing with the 34% retention statistic" (05-market-scan.md).**
+- *Options:* use it, use it with a caveat, or replace it with a figure from the pack.
+- *Criteria:* every number on the landing page must reproduce from the pack, with no legal claims.
+- *What decided it:* the scan cites a "Hospitality Workforce Report, 2027" but no source was attached, and nothing in the pack supports it. I replaced it with the pilot's card tips in and out (€31,754.13 and €31,754.09, takings.csv and payouts.csv).
+- *What would change my mind:* the report itself, with its method and sample.
 
-**Personal bias — Customer-centricity bias:** I initially favoured Declan's preferences because he pays Sciar. I recognised that this could lead me to undervalue employees' needs. I therefore retained owner control of the full points configuration while providing employees with greater visibility into their own payments.
+**Bias: automation bias.** At 14:58 UTC on 24 November I told the AI "ill follow you" and accepted all its suggested defaults (ai-log/session-01-claude-code.md). Earlier, at 14:22, I had assumed the CEO set the split rule until the pack showed it was Declan. I caught it when reviewing this README, and re-checked each decision against the pack.
 
 ## Part 4c: The Struggle (written without AI)
 
