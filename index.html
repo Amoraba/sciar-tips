@@ -1,8 +1,71 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Sciar Tips</title></head>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sciar Tips · for restaurant owners</title>
+<meta name="description" content="Sciar Tips pays your restaurant's card tips out to your team every Monday, under the split rule you set. Public alpha, fictional teaching case.">
+<link rel="stylesheet" href="style.css">
+</head>
 <body>
-<h1>Sciar Tips</h1>
-<p>Landing page coming soon. Sciar is a fictional company, invented for teaching (NCI H9LOCHFFT CA2).</p>
-<p><a href="app.html">Open the staff view</a></p>
-</body></html>
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="index.html">Sciar<span>Tips</span></a>
+    <a href="app.html">Staff view (demo)</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="banner" role="note">
+    <strong>Public alpha.</strong> Sciar, Halloran's and every figure on this page are fictional, from a teaching case (NCI H9LOCHFFT CA2).
+  </div>
+
+  <section style="padding:12px 0 4px">
+    <span class="tag">For restaurant owners</span>
+    <h1>Card tips, paid out to your team every Monday.</h1>
+    <p class="muted">Sciar Tips connects to your card terminal and pays the week's card tips to your staff, under the split rule you choose.</p>
+    <p style="margin-top:16px">
+      <a class="btn" href="mailto:hello@sciar.example?subject=Sciar%20Tips%20alpha%20for%20my%20restaurant">Join the alpha: email us</a>
+    </p>
+  </section>
+
+  <section class="card" aria-labelledby="h-true">
+    <h2 id="h-true">Three things that are true today</h2>
+    <ol class="claims">
+      <li>
+        <strong>You set the rule, we pay it out every Monday.</strong>
+        Card tips from your terminal go into one weekly pool. You set the split rule in the owner dashboard, and Sciar pays each person straight to their bank account on Monday.<sup><a href="#n1">[1]</a></sup>
+      </li>
+      <li>
+        <strong>In our pilot, the card tips went to staff, to within rounding.</strong>
+        Over a 12-week pilot at one Dublin restaurant, <strong>€31,754.13</strong> of card tips came in and <strong>€31,754.09</strong> was paid out to staff. The €0.04 gap is rounding each payout to the cent.<sup><a href="#n2">[2]</a></sup>
+      </li>
+      <li>
+        <strong>Your staff can see how their own pay was worked out.</strong>
+        In this alpha, each person sees their own hours, the week's tip pool and their share, on their phone, and can raise a concern. They never see a colleague's pay.<sup><a href="#n3">[3]</a></sup>
+      </li>
+    </ol>
+  </section>
+
+  <section class="card" aria-labelledby="h-cta">
+    <h2 id="h-cta">Want to try it?</h2>
+    <p>Tell us about your restaurant and we will get back to you.</p>
+    <p><a class="btn full" href="mailto:hello@sciar.example?subject=Sciar%20Tips%20alpha%20for%20my%20restaurant">Email hello@sciar.example</a></p>
+    <p><a class="btn ghost full" href="app.html">See what your staff would see (demo)</a></p>
+  </section>
+
+  <section aria-labelledby="h-notes">
+    <h2 id="h-notes" style="font-size:18px">Sources</h2>
+    <ol class="notes">
+      <li id="n1">Sciar pilot pack, README.md, sections "The company" and "Halloran's split rule".</li>
+      <li id="n2">Card tips in: data/takings.csv, all 72 rows (weeks 1–12), SUM(card_tips_eur) = 31,754.13. Paid out: data/payouts.csv, all 152 rows, SUM(tip_payout_eur) = 31,754.09. The 12.5% service charge is not part of the tip pool (README.md).</li>
+      <li id="n3">What this alpha's <a href="app.html">staff view</a> does today. Concerns are saved only on the person's own phone in this alpha; they are not sent to anyone yet.</li>
+    </ol>
+  </section>
+</main>
+
+<footer class="wrap">
+  <p>Sciar Tips public alpha · fictional teaching case. Contact: <a href="mailto:hello@sciar.example">hello@sciar.example</a> (example address).</p>
+</footer>
+</body>
+</html>

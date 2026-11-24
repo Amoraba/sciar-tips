@@ -1,15 +1,422 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Sciar Tips · staff view (starter)</title></head>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sciar Tips · My tips</title>
+<link rel="stylesheet" href="style.css">
+</head>
 <body>
-<h1>Sciar Tips</h1>
-<p id="check"></p>
-<!-- The pilot data, loaded as JavaScript so this page also works when opened straight from your disk. -->
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="index.html">Sciar<span>Tips</span></a>
+    <div class="lang" role="group" aria-label="Language / Idioma">
+      <button type="button" data-lang="en" aria-pressed="true">EN</button>
+      <button type="button" data-lang="pt" aria-pressed="false">PT</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="banner" role="note">
+    <strong data-i18n="demoTitle"></strong>
+    <span data-i18n="demoBody"></span>
+    <span id="ptNote" class="small" hidden data-i18n="ptNote"></span>
+  </div>
+
+  <h1 id="hello"></h1>
+  <p class="muted" id="roleLine"></p>
+
+  <label for="week" data-i18n="weekLabel"></label>
+  <select id="week"></select>
+
+  <!-- 1. Payout -->
+  <section class="card" aria-labelledby="h-pay">
+    <div class="label" id="h-pay" data-i18n="payTitle"></div>
+    <div class="big" id="payout"></div>
+    <p class="muted small" id="payNote"></p>
+  </section>
+
+  <!-- 2. Hours (hidden figure) -->
+  <section class="card" aria-labelledby="h-hours">
+    <span class="tag warn" data-i18n="hiddenTag"></span>
+    <h2 id="h-hours" data-i18n="hoursTitle"></h2>
+    <div class="stats">
+      <div class="stat"><div class="n" id="hWorked"></div><div class="t" data-i18n="hWorked"></div></div>
+      <div class="stat warn"><div class="n" id="hLate"></div><div class="t" data-i18n="hLate"></div></div>
+      <div class="stat"><div class="n" id="hCounted"></div><div class="t" data-i18n="hCounted"></div></div>
+    </div>
+    <div class="bar" aria-hidden="true"><div class="a" id="barA"></div><div class="b" id="barB"></div></div>
+    <p id="hoursSentence"></p>
+    <p class="muted small" data-i18n="ruleNote"></p>
+    <div class="source" id="srcHours"></div>
+  </section>
+
+  <!-- 3. How the payout was worked out (pool is a hidden figure) -->
+  <section class="card" aria-labelledby="h-how">
+    <span class="tag warn" data-i18n="hiddenTag"></span>
+    <h2 id="h-how" data-i18n="howTitle"></h2>
+    <div class="label" data-i18n="poolLabel"></div>
+    <div class="big" id="pool"></div>
+    <p class="muted small" id="poolNote"></p>
+    <div class="source" id="srcPool"></div>
+    <h3 data-i18n="stepsTitle"></h3>
+    <div class="calc" id="calc"></div>
+    <p class="muted small" data-i18n="ownerNote"></p>
+    <div class="source" id="srcCalc"></div>
+  </section>
+
+  <!-- 4. Whole pilot -->
+  <section class="card" aria-labelledby="h-all">
+    <h2 id="h-all" data-i18n="allTitle"></h2>
+    <p id="allSentence"></p>
+    <table>
+      <thead><tr>
+        <th data-i18n="thWeek"></th><th data-i18n="thHours"></th><th data-i18n="thLate"></th><th data-i18n="thPay"></th>
+      </tr></thead>
+      <tbody id="allRows"></tbody>
+    </table>
+    <div class="source" id="srcAll"></div>
+  </section>
+
+  <!-- 5. Team (whole team only, never groups under 3) -->
+  <section class="card" aria-labelledby="h-team">
+    <h2 id="h-team" data-i18n="teamTitle"></h2>
+    <p id="teamSentence"></p>
+    <p class="muted small" data-i18n="privacyNote"></p>
+    <div class="source" id="srcTeam"></div>
+  </section>
+
+  <!-- 6. Raise a concern -->
+  <section class="card" aria-labelledby="h-concern" id="concern">
+    <h2 id="h-concern" data-i18n="concernTitle"></h2>
+    <p data-i18n="concernIntro"></p>
+    <div class="banner" style="margin-top:8px">
+      <strong data-i18n="whoTitle"></strong>
+      <ul class="small" style="margin:6px 0 0;padding-left:20px">
+        <li data-i18n="who1"></li>
+        <li data-i18n="who2"></li>
+        <li data-i18n="who3"></li>
+      </ul>
+    </div>
+    <form id="cform" novalidate>
+      <label for="cat" data-i18n="catLabel"></label>
+      <select id="cat" required>
+        <option value="pay" data-i18n="catPay"></option>
+        <option value="hours" data-i18n="catHours"></option>
+        <option value="split" data-i18n="catSplit"></option>
+        <option value="other" data-i18n="catOther"></option>
+      </select>
+      <label for="ctext" data-i18n="textLabel"></label>
+      <textarea id="ctext" maxlength="1000" required></textarea>
+      <p class="muted small" data-i18n="textHint"></p>
+      <button class="btn full" type="submit" data-i18n="submit"></button>
+      <div id="cmsg" aria-live="polite"></div>
+    </form>
+    <h3 data-i18n="myConcerns"></h3>
+    <div id="clist"></div>
+  </section>
+</main>
+
+<footer class="wrap">
+  <p data-i18n="foot1"></p>
+  <p><a href="index.html" data-i18n="footLink"></a></p>
+</footer>
+
 <script src="data/payouts.js"></script>
 <script src="data/takings.js"></script>
 <script>
-  // PAYOUTS and TAKINGS are arrays of rows; every value is a string, as in the CSV. Replace this page with your build.
-  document.getElementById("check").textContent =
-    "Data loaded: " + PAYOUTS.length + " payout rows, " + TAKINGS.length + " takings rows.";
+(function () {
+  "use strict";
+
+  // ---------- Who this view is for (demo: one staff member) ----------
+  var STAFF_ID = "S12";
+  var STORE_KEY = "sciar-concerns-" + STAFF_ID;
+
+  // ---------- Text (EN + machine-translated PT) ----------
+  var TXT = {
+    en: {
+      demoTitle: "Demo: one staff member's view.",
+      demoBody: "This page shows what one person (Rafael, kitchen porter) would see about his own tips. It is not a staff management system and has no login. Sciar, Halloran's and all figures are fictional pilot data from a teaching case.",
+      ptNote: "",
+      hello: "Hi {name}",
+      roleLine: "{role} · Halloran's · staff ID {id}",
+      weekLabel: "Choose a week",
+      weekOpt: "Week {w} · starts Mon {d}",
+      payTitle: "Your tips for this week",
+      payNote: "Week starting Monday {d}. This is the same amount as your Monday text.",
+      hiddenTag: "Not shown in the Monday text",
+      hoursTitle: "Your hours this week",
+      hWorked: "hours worked",
+      hLate: "after 23:00: earned no tips",
+      hCounted: "hours that counted",
+      hoursSentence: "You worked {h} hours. {l} of them were after 23:00, so only {c} hours counted towards your tips.",
+      ruleNote: "Why: under the rule Halloran's owner set in Sciar, hours after 23:00 (when the till closes) earn no tip points. Working more hours does not always mean more tips.",
+      howTitle: "How your payout was worked out",
+      poolLabel: "All card tips this week (the tip pool)",
+      poolNote: "Card tips from {n} opening days, shared by {p} people. Service charge is not part of this pool.",
+      stepsTitle: "Step by step",
+      calc1: "1. Your points = {c} counted hours × {r} (your role's rate) = {pts}",
+      calc2: "2. Everyone's points this week ({p} people) = {tp}",
+      calc3: "3. Your share = {pts} ÷ {tp} = {share}",
+      calc4: "4. Your tips = {pool} × {share} = {pay}",
+      ownerNote: "The owner sets the points rate for each role. This view shows only your own rate.",
+      allTitle: "All 12 weeks of the pilot",
+      allSentence: "Over 12 weeks you worked {h} hours. {l} of them ({pct}) were after 23:00 and earned no tips. Your tips in total: {pay}.",
+      thWeek: "Week", thHours: "Hours", thLate: "After 23:00", thPay: "Tips",
+      teamTitle: "Your team this week",
+      teamSentence: "The whole team ({p} people) worked {t} hours after 23:00 this week. {l} of those hours were yours ({pct}).",
+      privacyNote: "Privacy: we never show a colleague's own pay, and we only show figures for groups of 3 or more people. A role with 1 or 2 people (like kitchen porter or bar) would identify them, so it is not shown.",
+      concernTitle: "Raise a concern",
+      concernIntro: "Something not right about your tips or hours? Tell us here. You do not need to go through your manager.",
+      whoTitle: "Who can see your concern?",
+      who1: "In this prototype: only you, on this phone. It is saved in this browser only (localStorage). It is NOT sent to anyone: not Sciar, not your manager, not the owner.",
+      who2: "If you clear your browser data, or use another phone, it is gone.",
+      who3: "Planned for the real product (not built yet): concerns go to Sciar's team only, not to your manager or the owner, and your name is not shared with them unless you say yes. Reason: the people who set and run the tip split should not be the only people you can ask about it.",
+      catLabel: "What is it about?",
+      catPay: "My payment amount", catHours: "My working hours", catSplit: "How tips are shared", catOther: "Something else",
+      textLabel: "Tell us what happened (any language is OK)",
+      textHint: "Please do not write other people's personal details.",
+      submit: "Save my concern",
+      errEmpty: "Please write a few words first.",
+      saved: "Saved. Your reference number is {ref}. You can see it below. (Prototype: it is only stored on this phone.)",
+      myConcerns: "My concerns (on this phone)",
+      none: "You have not raised any concerns on this phone.",
+      saved_on: "Saved {d} · about week {w}",
+      status: "Status: saved on this phone only (prototype, not sent)",
+      del: "Delete from this phone",
+      foot1: "Sciar Tips public alpha · fictional teaching case (NCI H9LOCHFFT CA2). Data: data/payouts.csv and data/takings.csv from the Sciar pilot pack.",
+      footLink: "About Sciar Tips (for restaurant owners)",
+      srcHours: "<b>Source:</b> data/payouts.csv<br><b>Filter:</b> staff_id = {id}, week = {w} ({n} row)<br><b>Fields:</b> hours = {h}; hours_after_2300 = {l}; counted = hours − hours_after_2300 = {c}",
+      srcPool: "<b>Source:</b> data/takings.csv<br><b>Filter:</b> week = {w} ({n} rows)<br><b>Calculation:</b> SUM(card_tips_eur) = {pool}<br><b>Check:</b> equals week_pool_eur in data/payouts.csv for week {w}: {chk}",
+      srcCalc: "<b>Source:</b> data/payouts.csv<br><b>Filter:</b> week = {w} ({p} rows)<br><b>Calculation:</b> SUM(points) = {tp}; your tip_payout_eur = {pay}",
+      srcAll: "<b>Source:</b> data/payouts.csv<br><b>Filter:</b> staff_id = {id}, weeks 1–12 ({n} rows)<br><b>Calculation:</b> SUM(hours), SUM(hours_after_2300), SUM(tip_payout_eur)",
+      srcTeam: "<b>Source:</b> data/payouts.csv<br><b>Filter:</b> week = {w} ({p} rows, whole team)<br><b>Calculation:</b> SUM(hours_after_2300) = {t}; yours = {l}",
+      yes: "yes", no: "NO"
+    },
+    pt: {
+      demoTitle: "Demonstração: a vista de um só trabalhador.",
+      demoBody: "Esta página mostra o que uma pessoa (Rafael, copeiro/lavagem) veria sobre as suas próprias gorjetas. Não é um sistema de gestão de pessoal e não tem login. A Sciar, o Halloran's e todos os números são dados fictícios de um caso de estudo.",
+      ptNote: " Tradução automática (feita com IA), não verificada por um falante nativo. Em caso de dúvida, veja a versão EN.",
+      hello: "Olá {name}",
+      roleLine: "{role} · Halloran's · nº de trabalhador {id}",
+      weekLabel: "Escolha uma semana",
+      weekOpt: "Semana {w} · começa seg {d}",
+      payTitle: "As suas gorjetas desta semana",
+      payNote: "Semana que começa na segunda-feira {d}. É o mesmo valor da sua mensagem de segunda-feira.",
+      hiddenTag: "Não aparece na mensagem de segunda",
+      hoursTitle: "As suas horas desta semana",
+      hWorked: "horas trabalhadas",
+      hLate: "depois das 23:00: sem gorjetas",
+      hCounted: "horas que contaram",
+      hoursSentence: "Trabalhou {h} horas. {l} foram depois das 23:00, por isso só {c} horas contaram para as suas gorjetas.",
+      ruleNote: "Porquê: segundo a regra que o dono do Halloran's definiu na Sciar, as horas depois das 23:00 (quando a caixa fecha) não ganham pontos de gorjeta. Trabalhar mais horas nem sempre significa mais gorjetas.",
+      howTitle: "Como foi calculado o seu pagamento",
+      poolLabel: "Todas as gorjetas de cartão desta semana (o fundo)",
+      poolNote: "Gorjetas de cartão de {n} dias de abertura, divididas por {p} pessoas. A taxa de serviço não faz parte deste fundo.",
+      stepsTitle: "Passo a passo",
+      calc1: "1. Os seus pontos = {c} horas que contaram × {r} (taxa da sua função) = {pts}",
+      calc2: "2. Pontos de todos esta semana ({p} pessoas) = {tp}",
+      calc3: "3. A sua parte = {pts} ÷ {tp} = {share}",
+      calc4: "4. As suas gorjetas = {pool} × {share} = {pay}",
+      ownerNote: "O dono define a taxa de pontos de cada função. Esta vista mostra só a sua.",
+      allTitle: "As 12 semanas do piloto",
+      allSentence: "Em 12 semanas trabalhou {h} horas. {l} delas ({pct}) foram depois das 23:00 e não ganharam gorjetas. Total das suas gorjetas: {pay}.",
+      thWeek: "Semana", thHours: "Horas", thLate: "Após 23:00", thPay: "Gorjetas",
+      teamTitle: "A sua equipa esta semana",
+      teamSentence: "A equipa toda ({p} pessoas) trabalhou {t} horas depois das 23:00 esta semana. {l} dessas horas foram suas ({pct}).",
+      privacyNote: "Privacidade: nunca mostramos o pagamento de um colega, e só mostramos números de grupos com 3 ou mais pessoas. Uma função com 1 ou 2 pessoas (como copeiro ou bar) identificava-as, por isso não aparece.",
+      concernTitle: "Comunicar um problema",
+      concernIntro: "Há algo errado com as suas gorjetas ou horas? Diga-nos aqui. Não precisa de passar pelo seu chefe.",
+      whoTitle: "Quem pode ver o que escreve?",
+      who1: "Neste protótipo: só você, neste telemóvel. Fica guardado apenas neste navegador (localStorage). NÃO é enviado a ninguém: nem à Sciar, nem ao seu chefe, nem ao dono.",
+      who2: "Se apagar os dados do navegador, ou usar outro telemóvel, desaparece.",
+      who3: "Planeado para o produto real (ainda não feito): os problemas vão só para a equipa da Sciar, não para o seu chefe nem para o dono, e o seu nome não lhes é dado sem a sua autorização. Razão: quem define e gere a divisão das gorjetas não deve ser a única pessoa a quem pode perguntar.",
+      catLabel: "Sobre o quê?",
+      catPay: "O valor do meu pagamento", catHours: "As minhas horas de trabalho", catSplit: "Como as gorjetas são divididas", catOther: "Outra coisa",
+      textLabel: "Conte-nos o que aconteceu (pode escrever em qualquer língua)",
+      textHint: "Por favor não escreva dados pessoais de outras pessoas.",
+      submit: "Guardar o meu problema",
+      errEmpty: "Por favor escreva algumas palavras primeiro.",
+      saved: "Guardado. O seu número de referência é {ref}. Pode vê-lo abaixo. (Protótipo: fica só guardado neste telemóvel.)",
+      myConcerns: "Os meus problemas (neste telemóvel)",
+      none: "Ainda não comunicou nenhum problema neste telemóvel.",
+      saved_on: "Guardado {d} · sobre a semana {w}",
+      status: "Estado: guardado só neste telemóvel (protótipo, não enviado)",
+      del: "Apagar deste telemóvel",
+      foot1: "Sciar Tips versão alfa pública · caso de estudo fictício (NCI H9LOCHFFT CA2). Dados: data/payouts.csv e data/takings.csv do pacote piloto da Sciar.",
+      footLink: "Sobre a Sciar Tips (para donos de restaurantes)",
+      srcHours: "<b>Fonte:</b> data/payouts.csv<br><b>Filtro:</b> staff_id = {id}, week = {w} ({n} linha)<br><b>Campos:</b> hours = {h}; hours_after_2300 = {l}; contaram = hours − hours_after_2300 = {c}",
+      srcPool: "<b>Fonte:</b> data/takings.csv<br><b>Filtro:</b> week = {w} ({n} linhas)<br><b>Cálculo:</b> SUM(card_tips_eur) = {pool}<br><b>Verificação:</b> igual a week_pool_eur em data/payouts.csv, semana {w}: {chk}",
+      srcCalc: "<b>Fonte:</b> data/payouts.csv<br><b>Filtro:</b> week = {w} ({p} linhas)<br><b>Cálculo:</b> SUM(points) = {tp}; o seu tip_payout_eur = {pay}",
+      srcAll: "<b>Fonte:</b> data/payouts.csv<br><b>Filtro:</b> staff_id = {id}, semanas 1–12 ({n} linhas)<br><b>Cálculo:</b> SUM(hours), SUM(hours_after_2300), SUM(tip_payout_eur)",
+      srcTeam: "<b>Fonte:</b> data/payouts.csv<br><b>Filtro:</b> week = {w} ({p} linhas, equipa toda)<br><b>Cálculo:</b> SUM(hours_after_2300) = {t}; as suas = {l}",
+      yes: "sim", no: "NÃO"
+    }
+  };
+  var ROLE = {
+    en: { "kitchen porter": "Kitchen porter", "server": "Server", "bar": "Bar", "chef": "Chef", "floor manager": "Floor manager" },
+    pt: { "kitchen porter": "Copeiro (lavagem)", "server": "Empregado de mesa", "bar": "Bar", "chef": "Cozinheiro", "floor manager": "Chefe de sala" }
+  };
+
+  var lang = "en";
+  try { if (localStorage.getItem("sciar-lang") === "pt") lang = "pt"; } catch (e) {}
+
+  function t(key, vars) {
+    var s = (TXT[lang][key] !== undefined ? TXT[lang][key] : TXT.en[key]) || "";
+    if (vars) s = s.replace(/\{(\w+)\}/g, function (m, k) { return vars[k] !== undefined ? vars[k] : m; });
+    return s;
+  }
+  function num(v) { var n = parseFloat(v); return isNaN(n) ? 0 : n; }
+  function eur(n) {
+    return "€" + n.toLocaleString(lang === "pt" ? "pt-PT" : "en-IE", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
+  function hrs(n) { return n.toLocaleString(lang === "pt" ? "pt-PT" : "en-IE", { maximumFractionDigits: 2 }); }
+  function pct(a, b) { return b ? Math.round(a / b * 100) + "%" : "–"; }
+  function date(iso) {
+    var d = new Date(iso + "T12:00:00Z");
+    return d.toLocaleDateString(lang === "pt" ? "pt-PT" : "en-IE", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" });
+  }
+  function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
+  function $(id) { return document.getElementById(id); }
+
+  // ---------- Data ----------
+  var mine = PAYOUTS.filter(function (r) { return r.staff_id === STAFF_ID; })
+                    .sort(function (a, b) { return num(a.week) - num(b.week); });
+  var me = mine[0];
+  var weeks = mine.map(function (r) { return r.week; });
+  var weekSel = $("week");
+  var current = weeks[weeks.length - 1];
+
+  function weekData(w) {
+    var row = mine.filter(function (r) { return r.week === w; })[0];
+    var team = PAYOUTS.filter(function (r) { return r.week === w; });
+    var days = TAKINGS.filter(function (r) { return r.week === w; });
+    var pool = days.reduce(function (s, r) { return s + num(r.card_tips_eur); }, 0);
+    pool = Math.round(pool * 100) / 100;
+    var teamPts = team.reduce(function (s, r) { return s + num(r.points); }, 0);
+    var teamLate = team.reduce(function (s, r) { return s + num(r.hours_after_2300); }, 0);
+    return {
+      row: row, team: team, days: days, pool: pool,
+      poolMatches: Math.abs(pool - num(row.week_pool_eur)) < 0.005,
+      teamPts: Math.round(teamPts * 100) / 100,
+      teamLate: teamLate,
+      hours: num(row.hours), late: num(row.hours_after_2300),
+      counted: num(row.hours) - num(row.hours_after_2300),
+      pts: num(row.points), rate: num(row.points_per_hour), pay: num(row.tip_payout_eur)
+    };
+  }
+
+  // ---------- Render ----------
+  function renderStatic() {
+    document.documentElement.lang = lang === "pt" ? "pt" : "en";
+    document.querySelectorAll("[data-i18n]").forEach(function (el) { el.textContent = t(el.getAttribute("data-i18n")); });
+    $("ptNote").hidden = lang !== "pt";
+    document.querySelectorAll(".lang button").forEach(function (b) { b.setAttribute("aria-pressed", String(b.getAttribute("data-lang") === lang)); });
+    $("hello").textContent = t("hello", { name: me.first_name });
+    $("roleLine").textContent = t("roleLine", { role: ROLE[lang][me.role] || me.role, id: me.staff_id });
+    weekSel.innerHTML = weeks.map(function (w) {
+      var r = mine.filter(function (x) { return x.week === w; })[0];
+      return '<option value="' + w + '"' + (w === current ? " selected" : "") + ">" + esc(t("weekOpt", { w: w, d: date(r.week_start) })) + "</option>";
+    }).join("");
+  }
+
+  function renderWeek() {
+    var d = weekData(current), w = current;
+    $("payout").textContent = eur(d.pay);
+    $("payNote").textContent = t("payNote", { d: date(d.row.week_start) });
+
+    $("hWorked").textContent = hrs(d.hours);
+    $("hLate").textContent = hrs(d.late);
+    $("hCounted").textContent = hrs(d.counted);
+    $("barA").style.width = (d.counted / d.hours * 100) + "%";
+    $("barB").style.width = (d.late / d.hours * 100) + "%";
+    $("hoursSentence").textContent = t("hoursSentence", { h: hrs(d.hours), l: hrs(d.late), c: hrs(d.counted) });
+    $("srcHours").innerHTML = t("srcHours", { id: STAFF_ID, w: w, n: 1, h: d.row.hours, l: d.row.hours_after_2300, c: hrs(d.counted) });
+
+    $("pool").textContent = eur(d.pool);
+    $("poolNote").textContent = t("poolNote", { n: d.days.length, p: d.team.length });
+    $("srcPool").innerHTML = t("srcPool", { w: w, n: d.days.length, pool: d.pool.toFixed(2), chk: d.poolMatches ? t("yes") : t("no") });
+
+    var share = d.pts / d.teamPts;
+    $("calc").innerHTML = [
+      t("calc1", { c: hrs(d.counted), r: d.rate, pts: d.row.points }),
+      t("calc2", { p: d.team.length, tp: hrs(d.teamPts) }),
+      t("calc3", { pts: d.row.points, tp: hrs(d.teamPts), share: (share * 100).toFixed(2) + "%" }),
+      t("calc4", { pool: eur(d.pool), share: (share * 100).toFixed(2) + "%", pay: eur(Math.round(d.pool * share * 100) / 100) })
+    ].map(esc).join("<br>");
+    $("srcCalc").innerHTML = t("srcCalc", { w: w, p: d.team.length, tp: d.teamPts.toFixed(2), pay: d.row.tip_payout_eur });
+
+    $("teamSentence").textContent = t("teamSentence", { p: d.team.length, t: hrs(d.teamLate), l: hrs(d.late), pct: pct(d.late, d.teamLate) });
+    $("srcTeam").innerHTML = t("srcTeam", { w: w, p: d.team.length, t: hrs(d.teamLate), l: d.row.hours_after_2300 });
+
+    // whole pilot table
+    var tH = 0, tL = 0, tP = 0;
+    $("allRows").innerHTML = mine.map(function (r) {
+      tH += num(r.hours); tL += num(r.hours_after_2300); tP += num(r.tip_payout_eur);
+      return '<tr' + (r.week === w ? ' class="sel"' : "") + "><td>" + r.week + "</td><td>" + hrs(num(r.hours)) + "</td><td>" + hrs(num(r.hours_after_2300)) + "</td><td>" + eur(num(r.tip_payout_eur)) + "</td></tr>";
+    }).join("");
+    tP = Math.round(tP * 100) / 100;
+    $("allSentence").textContent = t("allSentence", { h: hrs(tH), l: hrs(tL), pct: pct(tL, tH), pay: eur(tP) });
+    $("srcAll").innerHTML = t("srcAll", { id: STAFF_ID, n: mine.length });
+  }
+
+  // ---------- Concerns (simulated: localStorage on this device only) ----------
+  function loadConcerns() {
+    try { return JSON.parse(localStorage.getItem(STORE_KEY) || "[]"); } catch (e) { return []; }
+  }
+  function saveConcerns(list) {
+    try { localStorage.setItem(STORE_KEY, JSON.stringify(list)); return true; } catch (e) { return false; }
+  }
+  var memoryOnly = [];
+  function allConcerns() { var l = loadConcerns(); return l.length ? l : memoryOnly; }
+
+  function renderConcerns() {
+    var list = allConcerns();
+    if (!list.length) { $("clist").innerHTML = '<p class="muted">' + esc(t("none")) + "</p>"; return; }
+    $("clist").innerHTML = list.slice().reverse().map(function (c) {
+      return '<div class="concern"><div class="ref">' + esc(c.ref) + "</div>" +
+        '<div class="small muted">' + esc(t("saved_on", { d: new Date(c.at).toLocaleString(lang === "pt" ? "pt-PT" : "en-IE"), w: c.week })) + " · " + esc(t("cat" + c.catKey)) + "</div>" +
+        "<p style=\"margin:6px 0;white-space:pre-wrap\">" + esc(c.text) + "</p>" +
+        '<div class="small">' + esc(t("status")) + "</div>" +
+        '<button type="button" class="linkbtn" data-del="' + esc(c.ref) + '">' + esc(t("del")) + "</button></div>";
+    }).join("");
+  }
+
+  var CAT = { pay: "Pay", hours: "Hours", split: "Split", other: "Other" };
+  $("cform").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var text = $("ctext").value.trim();
+    if (!text) { $("cmsg").innerHTML = '<p class="banner">' + esc(t("errEmpty")) + "</p>"; $("ctext").focus(); return; }
+    var now = new Date();
+    var ref = "SC-" + now.toISOString().slice(0, 10).replace(/-/g, "") + "-" + Math.random().toString(36).slice(2, 6).toUpperCase();
+    var item = { ref: ref, at: now.toISOString(), week: current, catKey: CAT[$("cat").value], text: text };
+    var list = loadConcerns(); list.push(item);
+    if (!saveConcerns(list)) memoryOnly.push(item);
+    $("ctext").value = "";
+    $("cmsg").innerHTML = '<div class="ok">' + esc(t("saved", { ref: ref })) + "</div>";
+    renderConcerns();
+  });
+  $("clist").addEventListener("click", function (e) {
+    var ref = e.target.getAttribute && e.target.getAttribute("data-del");
+    if (!ref) return;
+    saveConcerns(loadConcerns().filter(function (c) { return c.ref !== ref; }));
+    memoryOnly = memoryOnly.filter(function (c) { return c.ref !== ref; });
+    renderConcerns();
+  });
+
+  // ---------- Events ----------
+  weekSel.addEventListener("change", function () { current = weekSel.value; renderWeek(); });
+  document.querySelectorAll(".lang button").forEach(function (b) {
+    b.addEventListener("click", function () {
+      lang = b.getAttribute("data-lang");
+      try { localStorage.setItem("sciar-lang", lang); } catch (e) {}
+      renderStatic(); renderWeek(); renderConcerns();
+    });
+  });
+
+  renderStatic(); renderWeek(); renderConcerns();
+})();
 </script>
-</body></html>
+</body>
+</html>
