@@ -9,3 +9,9 @@ AI sessions used to build this CA2 submission.
 **Redaction:** I removed my email address, my full name and my local file paths, and the GitHub token line, which was already masked. Nothing else was edited. Long tool outputs are shortened and marked with "[… more characters cut]".
 
 Part 4c of the README was written by me without AI, and it does not appear in these logs.
+
+Chat GPT Work
+https://chatgpt.com/share/6b05b857-8e6c-83eb-9b8b-e4fe54fc73dc
+
+Claude Work
+https://claude.ai/code/cshk_01NeGBicWAc8ubZBHgX2YHpnTCVytBmJ5DZXw7X3nQZcrL
