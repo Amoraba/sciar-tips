@@ -35,9 +35,8 @@ These choices affect Sciar's competitive advantage: owner control may support cu
 
 Rejecting the AI-generated marketing claims**
 
-Aoife recommended using the AI market scan, particularly its claim that transparent tip distribution improves staff retention by 34% and that Sciar is the only fully compliant platform. I considered using these claims, removing them, or replacing them with evidence-based statements. I rejected them because the scan provided no supporting sources, and the claims could not be independently verified. Publishing them could mislead potential customers and damage Sciar's credibility. I prioritised accuracy and trust over marketing appeal. I would reconsider if reliable, independently verifiable evidence supported the claims.
+Aoife suggested using figures from the AI market scan, including the claim that transparent tip distribution increases staff retention by 34%, and that Sciar is the only platform fully compliant with Irish tips legislation. I considered using the claims, removing them, or replacing them with statements supported by evidence. I decided to reject them because the scan included no sources to verify the figures or the compliance claim. Using unsupported information could mislead potential customers and damage Sciar's credibility. I chose accuracy and trust over making the website sound more attractive. I would reconsider if reliable, independent evidence became available.
 
----
 
 ## Appendix: how the figures were checked and what I assumed
 
