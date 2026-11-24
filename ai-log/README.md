@@ -4,7 +4,7 @@ AI sessions used to build this CA2 submission.
 
 | File | What it is |
 |---|---|
-| `session-01-claude-code.md` | Claude Code (Claude Opus 5.5) session, 24 Nov 2026 from 14:05 UTC: reading the brief and pack, setting up the repo, data checks, building app.html and index.html, and drafting the README. It is a readable conversion of the app's own transcript export. |
+| `session-01-claude-code.md` | The full Claude Code (Claude Opus 5.5) session on 24 Nov 2026, from 14:05 UTC: reading the brief and pack, setting up the repo, checking the data, building app.html and index.html, drafting and reviewing the README, and exporting this log. It is a readable conversion of the app's own transcript export. |
 
 **Redaction:** I removed my email address, my full name and my local file paths, and the GitHub token line, which was already masked. Nothing else was edited. Long tool outputs are shortened and marked with "[… more characters cut]".
 
