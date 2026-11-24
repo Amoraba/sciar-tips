@@ -17,15 +17,11 @@
 
 ## Part 4a: Theory behind the build
 
-## Part 4a: Theory behind the build
-
 **Leadership — Transactional leadership (Burns, 1978):** Declan's emphasis on established rules and control over the points formula reflects a transactional approach, where defined expectations and rewards guide behaviour. His request to hide the formula suggests that consistency and managerial control are prioritised over employee participation. This explains the preference for predictable administration but misses employees' perceptions of fairness.
 
 **Culture — Organisational silence and psychological safety (Morrison and Milliken, 2000; Edmondson, 1999):** Rafael's request not to be identified, alongside Niamh's rejection of a complaints feature, suggests conditions in which employees may withhold concerns. This influenced the inclusion of a concern-submission feature in the staff dashboard.
 
 These choices affect Sciar's competitive advantage: owner control may support customer retention, while employee transparency and voice could differentiate Sciar through trust. However, individual messages cannot establish the culture of an entire organisation, and the theories do not prove why employees remain silent.
-
-## Part 4b: Decision record
 
 ## Part 4b: Decision record
 
