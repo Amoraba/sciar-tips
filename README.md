@@ -37,7 +37,9 @@ These choices affect Sciar's competitive advantage: owner control may support cu
 
 ## Part 4c: The Struggle (written without AI)
 
-_to be written_
+Rejecting the AI-generated marketing claims**
+
+Aoife recommended using the AI market scan, particularly its claim that transparent tip distribution improves staff retention by 34% and that Sciar is the only fully compliant platform. I considered using these claims, removing them, or replacing them with evidence-based statements. I rejected them because the scan provided no supporting sources, and the claims could not be independently verified. Publishing them could mislead potential customers and damage Sciar's credibility. I prioritised accuracy and trust over marketing appeal. I would reconsider if reliable, independently verifiable evidence supported the claims.
 
 ---
 
