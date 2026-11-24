@@ -48,6 +48,8 @@
 
 So first Declan's decision I believe will not produce and promote a healthy relationship with his employees the business solution needs more transparency and we obviously can see someone of the team not getting paid fairy because he works after 23:00.. Raphael's message is clear representation of this problem here and I believe it can even be worse and spread to more employees if not handled properly. The AI market data is not accurate and cannot be shared on the website unfortunately  because the claims are not true. Moving forward I will try to make sure from a stakeholders management perspective that I discuss such challenges with the business owner in advance and try to solve their teams problem during the requirements gathering session while we still have a chance to propose ideas, sadly we are a bit behind in this case and can not challenge Declan's decision at this point of time. 
 
+Commit Hash = 2c810d7
+
 ## Appendix: how the figures were checked and what I assumed
 
 Not part of the word counts above.
