@@ -1,7 +1,8 @@
 # Sciar Tips · CA2 (H9LOCHFFT)
 
 - **Live site (GitHub Pages):** https://amoraba.github.io/sciar-tips/
-- Live Product https://amoraba.github.io/sciar-tips/app.html
+- **Repository:** https://github.com/Amoraba/sciar-tips
+- **Staff view (the product):** https://amoraba.github.io/sciar-tips/app.html
 
 **My question:** When a kitchen porter can see the hours that earned him no tips, and can raise it without going through his manager, does the silence behind "nobody has ever complained" break?
 
